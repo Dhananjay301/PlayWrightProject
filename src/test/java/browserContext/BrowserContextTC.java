@@ -7,8 +7,6 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 
 public class BrowserContextTC {
-
-	
 	public static void main(String[] args) {
 		//to open 2browsers
 		
