@@ -23,6 +23,7 @@ public class BrowserContextTC {
 		page2.navigate("https://www.amazon.com/ref=nav_logo");
 		String title2=page2.title();
 		System.out.println(title2);
+
 		 
 		page1.close();
 		br1.close();
