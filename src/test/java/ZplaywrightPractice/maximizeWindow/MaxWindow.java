@@ -1,4 +1,4 @@
-package maximizeWindow;
+package ZplaywrightPractice.maximizeWindow;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;

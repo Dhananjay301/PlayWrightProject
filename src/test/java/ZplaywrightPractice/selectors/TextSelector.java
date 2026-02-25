@@ -1,4 +1,4 @@
-package selectors;
+package ZplaywrightPractice.selectors;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package maximizeWindow;
+package ZplaywrightPractice.maximizeWindow;
 
 import java.nio.file.Paths;
 

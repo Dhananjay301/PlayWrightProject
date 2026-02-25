@@ -1,4 +1,4 @@
-package browserContext;
+package ZplaywrightPractice.browserContext;
 
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserContext;

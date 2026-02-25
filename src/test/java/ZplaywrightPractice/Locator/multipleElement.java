@@ -1,4 +1,4 @@
-package Locator;
+package ZplaywrightPractice.Locator;
 
 import java.util.List;
 
