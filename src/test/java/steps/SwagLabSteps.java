@@ -16,11 +16,12 @@ public class SwagLabSteps {
     }
     @Given("swagLab logo should be displayed")
     public void swag_lab_logo_should_be_displayed() {
+        swagLoginPage.logoDisaply();
 
     }
     @When("user enter {string} in username section")
     public void user_enter_in_username_section(String string) {
-
+        System.out.println("=============XXXXXXXXXXXXXX=====================");
     }
     @When("user enter {string} in password section")
     public void user_enter_in_password_section(String string) {

@@ -44,4 +44,14 @@ public class ControlActions {
     public void navigateToSwagUrl(String url){
         page.navigate(url);
     }
+
+    public boolean isElementDisplayed(String logoLocator){
+       return page.locator(logoLocator).isVisible();
+    }
+
+    public static void closeBrowser(){
+        if (page != null) page.close();
+        if (browser != null) browser.close();
+        if (playwright != null) playwright.close();
+    }
 }
