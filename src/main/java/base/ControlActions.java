@@ -13,7 +13,7 @@ public class ControlActions {
     private static Page page;
 
 
-    public void startBrowser() {
+    public static void startBrowser() {
         Proputility proputility=new Proputility(FilePath.dataFilePath);
         String browserName=proputility.getValue("browserName");
         boolean headlessFlag= Boolean.parseBoolean(proputility.getValue("headlessFlag"));
@@ -41,11 +41,11 @@ public class ControlActions {
         page=browser.newPage();
     }
 
-    public void navigateToSwagUrl(String url){
+    protected void navigateToSwagUrl(String url){
         page.navigate(url);
     }
 
-    public boolean isElementDisplayed(String logoLocator){
+    protected boolean isElementDisplayed(String logoLocator){
        return page.locator(logoLocator).isVisible();
     }
 
@@ -54,4 +54,23 @@ public class ControlActions {
         if (browser != null) browser.close();
         if (playwright != null) playwright.close();
     }
+    protected static void enterUsername(String username, String usernameLoc){
+        page.locator(usernameLoc).type(username);
+
+    }
+    public void waitForIt(int timeout){
+        try{
+            Thread.sleep(timeout);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void enterPassword(String password, String locator){
+        page.locator(locator).type(password);
+    }
+    protected void loginButton(String logOnButtonLoc){
+        page.locator(logOnButtonLoc).click();
+    }
+
+
 }

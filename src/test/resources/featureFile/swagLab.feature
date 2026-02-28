@@ -4,8 +4,12 @@ Feature: Test SwagLab Page
     Given user is on swagLab page
     And swagLab logo should be displayed
     When user enter "<username>" in username section
+    And user wait for loader to be disapear
     And user enter "<password>" in password section
-    Then user is on swag home page
+    And user wait for loader to be disapear
+    And user click on login button
+    And user wait for loader to be disapear
+
     Examples:
       | username      | password |
       | standard_user | secret_sauce |
