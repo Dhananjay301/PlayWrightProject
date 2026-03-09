@@ -5,14 +5,15 @@ import com.microsoft.playwright.options.SelectOption;
 
 public class UsingSelect {
     public static void main(String[] args) throws InterruptedException {
-        Playwright playwright=Playwright.create();
-        Browser browser=playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
-        Page page=browser.newPage();
-        page.navigate("https://testautomationpractice.blogspot.com/");
+            Playwright playwright=Playwright.create();
+            Browser browser=playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+            Page page=browser.newPage();
+            page.navigate("https://testautomationpractice.blogspot.com/");
 
         //Single value select
 
         Locator countryLoc=page.locator("#country");
+        System.out.println("count= "+countryLoc.count());
         Thread.sleep(2000);
         countryLoc.selectOption("United States");
         Thread.sleep(1000);
