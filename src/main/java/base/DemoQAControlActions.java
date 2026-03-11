@@ -1,22 +1,29 @@
 package base;
 
 import com.microsoft.playwright.*;
+import constants.FilePath;
+import utility.Proputility;
 
 public class DemoQAControlActions {
     private static ThreadLocal<Playwright> threadLocalPlaywright = new ThreadLocal<>();
     private static ThreadLocal<Browser> threadLocalBrowser = new ThreadLocal<>();
     private static ThreadLocal<BrowserContext> threadLocalBrowserContext = new ThreadLocal<>();
     private static ThreadLocal<Page> threadLocalPage = new ThreadLocal<>();
+    static Proputility proputility;
 
     public static void startBrowser() {
+         proputility = new Proputility(FilePath.dataFilePath);
+        String browser = proputility.getValue("browserName");
+        boolean flag= Boolean.parseBoolean(proputility.getValue("headlessFlag"));
         threadLocalPlaywright.set(Playwright.create());
-        String browser = "chrome";
-
         switch (browser.toLowerCase().trim()) {
+            case "firefox":
+                threadLocalBrowser.set(threadLocalPlaywright.get().firefox().launch(new BrowserType.LaunchOptions().setHeadless(flag)));
+                break;
 
             case "chrome":
             default:
-                threadLocalBrowser.set(threadLocalPlaywright.get().chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setChannel("chrome")));
+                threadLocalBrowser.set(threadLocalPlaywright.get().chromium().launch(new BrowserType.LaunchOptions().setHeadless(flag).setChannel(browser.trim())));
         }
         threadLocalBrowserContext.set (threadLocalBrowser.get().newContext());
         threadLocalPage.set(threadLocalBrowserContext.get().newPage());
@@ -25,6 +32,9 @@ public class DemoQAControlActions {
     protected void navigate(String url) {
         threadLocalPage.get().navigate(url);
 
+    }
+    protected boolean logoValidate(String logoLoc){
+        return threadLocalPage.get().locator(logoLoc).isVisible();
     }
 
 }
