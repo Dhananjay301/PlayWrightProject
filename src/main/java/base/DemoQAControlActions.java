@@ -23,7 +23,7 @@ public class DemoQAControlActions {
 
             case "chrome":
             default:
-                threadLocalBrowser.set(threadLocalPlaywright.get().chromium().launch(new BrowserType.LaunchOptions().setHeadless(flag).setChannel(browser.trim())));
+                threadLocalBrowser.set(threadLocalPlaywright.get().chromium().launch(new BrowserType.LaunchOptions().setHeadless(flag).setChannel(browser.toLowerCase().trim())));
         }
         threadLocalBrowserContext.set (threadLocalBrowser.get().newContext());
         threadLocalPage.set(threadLocalBrowserContext.get().newPage());
@@ -37,4 +37,7 @@ public class DemoQAControlActions {
         return threadLocalPage.get().locator(logoLoc).isVisible();
     }
 
+    protected void clickOnElement(String locator) {
+        threadLocalPage.get().locator(locator).click();
+    }
 }

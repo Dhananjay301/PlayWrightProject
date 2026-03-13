@@ -10,13 +10,13 @@ public class Hooks {
 
     @Before
     public void startBrowser(Scenario scenario){
-        if(scenario.getName().contains("home page")){
-            System.out.println("Starting browser for Home Page tests");
-            DemoQAControlActions.startBrowser();
-        } else if (scenario.getName().contains("swag lab")) {
+      if (scenario.getName().contains("swag lab")) {
             System.out.println("Starting browser for Swag lab tests");
             ControlActions.startBrowser();
 
+        }  else{
+            System.out.println("Starting browser for Home Page tests");
+            DemoQAControlActions.startBrowser();
         }
     }
     @After
