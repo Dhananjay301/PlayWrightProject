@@ -8,7 +8,7 @@ Feature: Test SwagLab Page
     And user enter "<password>" in password section
     And user wait for loader to be disapear
     And user click on login button
-    And user wait for loader to be disapear
+#    And user wait for loader to be disapear
 
     Examples:
       | username      | password |
