@@ -7,7 +7,7 @@ Feature: Demo QA application validation
 
     Examples:
       | demoQAUrl              |
-      | https://demoqa.com/ |
+      | demoQAUrl |
 
 @checkbox
   Scenario Outline: Select desktop check boxes and validate all child checboxes under desktop by default selected
