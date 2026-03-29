@@ -6,11 +6,12 @@ Feature: Demo QA application validation
     Then user should see application logo
 
     Examples:
-      | demoQA              |
+      | demoQAUrl              |
       | https://demoqa.com/ |
 
+@checkbox
   Scenario Outline: Select desktop check boxes and validate all child checboxes under desktop by default selected
-    Given User login in to "demoQAUrl" site
+    Given User login in to "<demoQAUrl>" site
     When user click on "Elements" module
     And user wait for loader to be disapear
     And user click on "Check Box" button
