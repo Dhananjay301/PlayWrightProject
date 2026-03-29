@@ -1,5 +1,6 @@
 Feature: Test SwagLab Page
 
+  @Smoke
   Scenario Outline: Verify swag lab login page with valid credentials
     Given user is on swagLab page
     And swagLab logo should be displayed
