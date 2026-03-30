@@ -9,15 +9,15 @@ on:
   workflow_dispatch:
     inputs:
 
-      env:
-        description: "Select Environment"
-        required: true
-        default: "qa"
-        type: choice
-        options:
-          - qa
-          - stage
-          - prod
+#      env:
+#        description: "Select Environment"
+#        required: true
+#        default: "qa"
+#        type: choice
+#        options:
+#          - qa
+#          - stage
+#          - prod
 
       tags:
         description: "Cucumber Tags"
@@ -63,7 +63,7 @@ jobs:
           echo "Browser: ${{ github.event.inputs.browser }}"
 
           mvn clean test \
-          -Denv=${{ github.event.inputs.env }} \
+#          -Denv=${{ github.event.inputs.env }} \
           -Dbrowser=${{ github.event.inputs.browser }} \
           -Dcucumber.filter.tags="${{ github.event.inputs.tags }}"
 
