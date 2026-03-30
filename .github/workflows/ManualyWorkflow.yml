@@ -1,0 +1,75 @@
+name: Playwright CI Pipeline
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+
+  workflow_dispatch:
+    inputs:
+
+      env:
+        description: "Select Environment"
+        required: true
+        default: "qa"
+        type: choice
+        options:
+          - qa
+          - stage
+          - prod
+
+      tags:
+        description: "Cucumber Tags"
+        required: true
+        default: "@smoke"
+        type: string
+
+      browser:
+        description: "Select Browser"
+        required: true
+        default: "chrome"
+        type: choice
+        options:
+          - chrome
+          - firefox
+          - webkit
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Verify Maven
+        run: mvn -version
+
+      - name: Install Playwright Browsers
+        run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install"
+
+      - name: Run Playwright Tests
+        run: |
+          echo "Environment: ${{ github.event.inputs.env }}"
+          echo "Tags: ${{ github.event.inputs.tags }}"
+          echo "Browser: ${{ github.event.inputs.browser }}"
+
+          mvn clean test \
+          -Denv=${{ github.event.inputs.env }} \
+          -Dbrowser=${{ github.event.inputs.browser }} \
+          -Dcucumber.filter.tags="${{ github.event.inputs.tags }}"
+
+      - name: Upload Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: target/
